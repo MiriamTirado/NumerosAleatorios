@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Números Aleatorios</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css"> <!-- Llamada hoja de estilos-->
+    
+    <script>
+        // variables
+        var minimo;
+        var maximo;
+        var resultado;
+
+        function validar() {
+	       var error;  //Variable local
+
+            if (isNaN(minimo) || isNaN(maximo)){
+                document.getElementById("error").innerHTML ="Error, introduzca un número";
+                document.getElementById("resultado").innerHTML = "";
+                error=true;
+            }
+            else{
+                if (minimo >=maximo) {
+                    document.getElementById("error").innerHTML ="EL VALOR MÍNIMO DEBE SER MAYOR QUE EL MÁXIMO";
+                    document.getElementById("resultado").innerHTML = "";
+                    error=true;
+                } else { // Todo va bien
+                    error = false;
+                }
+                return error;   
+            }
+        }
+
+        function aleatorio(a,b) { //genera un numero aleatorio
+            return Math.round(Math.random()*(b-a)+parseInt(a));
+        }
+
+        function carcular_aleatorio(){ //calcula entre el minimo y el maximo
+		//Number convierte carácter a número
+            minimo = Number(document.f1.minim.value); 
+            maximo = Number(document.f1.maxim.value);
+            resultado = aleatorio(minimo,maximo);
+		
+            if (!validar()){
+                document.f1.res.value = resultado;
+                document.getElementById("resultado").innerHTML = resultado.toString();
+                document.getElementById("error").innerHTML="";
+                img_audio(); //muestra imagen y sonido
+            }
+            else document.f1.res.value = "error";
+        }
+
+        function img_audio (){
+        //por si se borra imagen de la segunda cifra
+            document.getElementById('image2').src = "#"; 
+
+            if (resultado == 0) {
+                document.getElementById('image1').src = "imagenes/cero.png"; //ruta imagenes
+                var audio = new Audio('sonidos/cero.mp3');
+                audio.play(); // variable sonido
+            }
+
+            else if (resultado == 1){
+                document.getElementById('image1').src = "imagenes/uno.png";
+                var audio = new Audio('sonidos/uno.mp3');
+                audio.play();
+            } else if (resultado == 2){
+                document.getElementById('image1').src = "imagenes/dos.png";
+                var audio = new Audio('sonidos/dos.mp3');
+                audio.play();
+            }else if (resultado == 3){
+                document.getElementById('image1').src = "imagenes/tres.png";
+                var audio = new Audio('sonidos/tres.mp3');
+                audio.play();
+            }else if (resultado == 4){
+                document.getElementById('image1').src = "imagenes/cuatro.png";
+                var audio = new Audio('sonidos/cuatro.mp3');
+                audio.play();
+            }else if (resultado == 5){
+                document.getElementById('image1').src = "imagenes/cinco.png";
+                var audio = new Audio('sonidos/cinco.mp3');
+                audio.play();
+            }else if (resultado == 6){
+                document.getElementById('image1').src = "imagenes/seis.png";
+                var audio = new Audio('sonidos/seis.mp3');
+                audio.play();
+            }else if (resultado == 7){
+                document.getElementById('image1').src = "imagenes/siete.png";
+                var audio = new Audio('sonidos/siete.mp3');
+                audio.play();
+            }else if (resultado == 8){
+                document.getElementById('image1').src = "imagenes/ocho.png";
+                var audio = new Audio('sonidos/ocho.mp3');
+                audio.play();
+            }else if (resultado == 9){
+                document.getElementById('image1').src = "imagenes/nueve.png";
+                var audio = new Audio('sonidos/nueve.mp3');
+                audio.play();
+            }else if (resultado == 10){
+                document.getElementById('image1').src = "imagenes/uno.png";
+                document.getElementById('image2').src = "imagenes/cero.png";
+                var audio = new Audio('sonidos/diez.mp3');
+                audio.play();
+            }else {
+                document.getElementById('image1').src = "imagenes/numeros1.jpg";
+                var audio = new Audio('sonidos/numeros.mp3');
+                audio.play();
+            }	
+        }
+	</script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Práctica Números Aleatorios</h1>
+        <h2>Genera un número aleatorio</h2>
+        <h3>¡Seleccione un valor mínimo y un valor máximo para el rango de números a generar!</h3>
+
+<p id="resultado"></p>
+<p id="error"></p> 
+
+</div> 
+
+<form name="f1"  >
+    <h4>Ingrese el número mínimo </h4><INPUT type="number" max="999999" min="0" name="minim" /> <!--donde se pone el min -->
+    <h4>Ingrese el número máximo</h4><INPUT type="number" max="999999" min="0" name="maxim" /> <!--donde se pone el max -->
+<BR/>
+<BR/>
+    <INPUT  onclick="carcular_aleatorio()"    type="button" value="Calcular número aleatorio"/>
+    <h4>Resultado:</h4><INPUT maxLength="5" size="5" name="res"/>
+
+    </form>
+<BR/>
+<!-- aqui se mostrarán las imagenes.-->
+<img id="image1" src="imagenes/nada.png" alt="image">
+<img id="image2" src="#" alt="">
+</body>
+    
+</html>
